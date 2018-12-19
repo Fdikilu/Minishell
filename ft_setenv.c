@@ -6,14 +6,14 @@
 /*   By: fdikilu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/07 19:16:51 by fdikilu           #+#    #+#             */
-/*   Updated: 2018/12/10 05:36:21 by fdikilu          ###   ########.fr       */
+/*   Updated: 2018/12/19 22:33:54 by fdikilu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 static char	*setvar(char *name, char *value)
-{//free name et value en fonction de la maniere dont je le gere
+{
 	int		len;
 	char	*var;
 
@@ -57,6 +57,11 @@ char		**ft_setenv(char **env, char *name, char *value)
 	int		i;
 	char	*tmp;
 
+	if (!name || !value)
+	{
+		write(2, "unsetenv: Not enough parameter\n", 31);
+		return (env);
+	}
 	i = 0;
 	while (env[i])
 	{
@@ -64,7 +69,7 @@ char		**ft_setenv(char **env, char *name, char *value)
 		{
 			if (!(tmp = setvar(name, value)))
 				return (env);
-			free((void *)env[i]);
+			ft_strdel(&env[i]);
 			env[i] = tmp;
 			return (env);
 		}

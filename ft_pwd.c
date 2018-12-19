@@ -1,39 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_pwd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fdikilu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/23 23:51:42 by fdikilu           #+#    #+#             */
-/*   Updated: 2018/12/19 19:16:17 by fdikilu          ###   ########.fr       */
+/*   Created: 2018/12/16 00:09:27 by fdikilu           #+#    #+#             */
+/*   Updated: 2018/12/19 22:29:48 by fdikilu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minishell.h"
 
-char	*ft_strjoin_free(char const *s1, char const *s2)
+void	ft_pwd(char **env)
 {
 	int		i;
-	int		j;
-	char	*str;
+	char	buf[1025];
+	char	*tmp;
 
-	if (!(s1 && s2))
-		return (NULL);
 	i = 0;
-	j = 0;
-	if (!(str = (char *)malloc(sizeof(*str)
-		* (ft_strlen((char *)s1) + ft_strlen((char *)s2) + 1))))
-		return (NULL);
-	while (s1[i] && (str[i] = s1[i]))
-		i++;
-	while (s2[j])
+	if ((tmp = ft_getvalue(env, "PWD")))
 	{
-		str[i] = s2[j];
-		i++;
-		j++;
+		ft_putstr(tmp);
+		ft_putchar('\n');
+		return ;
 	}
-	str[i] = '\0';
-	ft_strdel((char **)&s1);
-	return (str);
+	if (!(getcwd(buf, 1024)))
+	{
+		write(2, "pwd not found\n", 14);
+		return ;
+	}
+	ft_putstr(buf);
+	ft_putchar('\n');
 }

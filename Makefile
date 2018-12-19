@@ -6,7 +6,7 @@
 #    By: fdikilu <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/04 16:57:42 by fdikilu           #+#    #+#              #
-#    Updated: 2018/12/10 03:08:38 by fdikilu          ###   ########.fr        #
+#    Updated: 2018/12/19 19:01:58 by fdikilu          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,12 +21,23 @@ LIB = $(LIB_DIR)/libft.a
 CFLAGS = -Wall -Wextra -Werror
 
 SRC =\
+	check_builtin.c \
 	ft_reset_env.c \
+	ft_getvalue.c \
+	dollar_tilde.c \
 	ft_env.c \
 	ft_unsetenv.c \
 	ft_setenv.c \
 	ft_cd.c \
-	main.c
+	ft_echo.c \
+	ft_pwd.c \
+	ft_exit.c \
+	ft_findinpath.c \
+	ft_lexer.c \
+	ft_lexer_p2.c \
+	ft_exec.c \
+	ft_free.c \
+	minishell.c
 
 OBJ = $(SRC:.c=.o)
 

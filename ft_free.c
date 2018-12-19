@@ -1,39 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fdikilu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/23 23:51:42 by fdikilu           #+#    #+#             */
-/*   Updated: 2018/12/19 19:16:17 by fdikilu          ###   ########.fr       */
+/*   Created: 2018/12/17 18:22:19 by fdikilu           #+#    #+#             */
+/*   Updated: 2018/12/18 23:27:00 by fdikilu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minishell.h"
 
-char	*ft_strjoin_free(char const *s1, char const *s2)
+void	l_cmdfree(t_list *l_cmd)
 {
-	int		i;
-	int		j;
-	char	*str;
+	t_list	*tmp;
 
-	if (!(s1 && s2))
-		return (NULL);
-	i = 0;
-	j = 0;
-	if (!(str = (char *)malloc(sizeof(*str)
-		* (ft_strlen((char *)s1) + ft_strlen((char *)s2) + 1))))
-		return (NULL);
-	while (s1[i] && (str[i] = s1[i]))
-		i++;
-	while (s2[j])
+	while (l_cmd)
 	{
-		str[i] = s2[j];
-		i++;
-		j++;
+		tmp = l_cmd;
+		l_cmd = l_cmd->next;
+		ft_tabfree((char **)tmp->content);
+		free((void *)tmp);
 	}
-	str[i] = '\0';
-	ft_strdel((char **)&s1);
-	return (str);
 }

@@ -6,7 +6,7 @@
 /*   By: fdikilu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/28 01:03:43 by fdikilu           #+#    #+#             */
-/*   Updated: 2018/12/10 21:28:29 by fdikilu          ###   ########.fr       */
+/*   Updated: 2018/12/10 22:30:03 by fdikilu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
-# include "libft/get_next_line.h"
+# include "get_next_line.h"
 
 # define BASE "0123456789abcdefghijklmnopqrstuvwxyz"
 

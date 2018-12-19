@@ -1,29 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_echo.c                                          :+:      :+:    :+:   */
+/*   check_builtin.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fdikilu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/07 21:55:00 by fdikilu           #+#    #+#             */
-/*   Updated: 2018/12/18 21:27:49 by fdikilu          ###   ########.fr       */
+/*   Created: 2018/12/17 18:09:57 by fdikilu           #+#    #+#             */
+/*   Updated: 2018/12/19 21:31:07 by fdikilu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_echo(char **env, char **argv)
+int		check_builtin(char *cmd)
 {
-	int		i;
-
-	(void)env;
-	i = 1;
-	while (argv[i])
-	{
-		if (i != 1)
-			ft_putchar(' ');
-		ft_putstr(argv[i]);
-		i++;
-	}
-	ft_putchar('\n');
+	if (ft_strcmp("echo", cmd) == 0)
+		return (0);
+	else if (ft_strcmp("cd", cmd) == 0)
+		return (0);
+	else if (ft_strcmp("pwd", cmd) == 0)
+		return (0);
+	else if (ft_strcmp("env", cmd) == 0)
+		return (0);
+	else if (ft_strcmp("setenv", cmd) == 0)
+		return (0);
+	else if (ft_strcmp("unsetenv", cmd) == 0)
+		return (0);
+	else if (ft_strcmp("exit", cmd) == 0)
+		return (0);
+	else
+		return (1);
 }

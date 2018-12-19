@@ -6,8 +6,16 @@
 /*   By: fdikilu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/07 21:55:27 by fdikilu           #+#    #+#             */
-/*   Updated: 2018/12/07 21:55:29 by fdikilu          ###   ########.fr       */
+/*   Updated: 2018/12/18 20:58:09 by fdikilu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
+#include "minishell.h"
 
+void	ft_exit(char **env, t_list *l_cmd)
+{
+	ft_tabfree(env);
+	l_cmdfree(l_cmd);
+	exit(0);
+}
