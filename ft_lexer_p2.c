@@ -6,7 +6,7 @@
 /*   By: fdikilu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/18 16:55:01 by fdikilu           #+#    #+#             */
-/*   Updated: 2018/12/18 21:03:24 by fdikilu          ###   ########.fr       */
+/*   Updated: 2018/12/21 18:09:03 by fdikilu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,11 @@ static t_list	*set_path(char **env, t_list *l_cmd)
 	l_tmp = l_cmd;
 	while (l_cmd)
 	{
+		if (!((char **)l_cmd->content)[0])
+		{
+			l_cmdfree(l_tmp);
+			return (NULL);
+		}
 		if (check_builtin(((char **)l_cmd->content)[0])
 			&& (tmp = ft_findinpath(env, ((char **)l_cmd->content)[0])))
 		{
