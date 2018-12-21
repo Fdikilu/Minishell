@@ -6,7 +6,7 @@
 #    By: fdikilu <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/04 16:57:42 by fdikilu           #+#    #+#              #
-#    Updated: 2018/12/19 19:01:58 by fdikilu          ###   ########.fr        #
+#    Updated: 2018/12/21 14:25:51 by fdikilu          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ CFLAGS = -Wall -Wextra -Werror
 SRC =\
 	check_builtin.c \
 	ft_reset_env.c \
+	findvar.c \
 	ft_getvalue.c \
 	dollar_tilde.c \
 	ft_env.c \

@@ -6,7 +6,7 @@
 /*   By: fdikilu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/07 19:16:51 by fdikilu           #+#    #+#             */
-/*   Updated: 2018/12/19 22:33:54 by fdikilu          ###   ########.fr       */
+/*   Updated: 2018/12/21 14:33:16 by fdikilu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ char		**ft_setenv(char **env, char *name, char *value)
 	i = 0;
 	while (env[i])
 	{
-		if (ft_strstr(env[i], name))
+		if (findvar(env[i], name))
 		{
 			if (!(tmp = setvar(name, value)))
 				return (env);

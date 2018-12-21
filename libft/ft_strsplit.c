@@ -5,98 +5,66 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fdikilu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/23 23:52:19 by fdikilu           #+#    #+#             */
-/*   Updated: 2016/12/07 23:32:28 by fdikilu          ###   ########.fr       */
+/*   Created: 2018/12/21 14:37:55 by fdikilu           #+#    #+#             */
+/*   Updated: 2018/12/21 15:43:59 by fdikilu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int		ft_nb_word(char *str, char c)
+static int	nb_word(char *s, char c)
 {
-	int i;
-	int cpt;
-
-	i = 0;
-	cpt = 0;
-	while (str[i] != '\0')
-	{
-		if ((str[i] != c) && (str[i + 1] == c || str[i + 1] == '\0'))
-			cpt++;
-		i++;
-	}
-	return (cpt);
-}
-
-static int		ft_nb_char(int index_word, char *str, char c)
-{
-	int	i;
-	int	nb_word;
-	int nb_char;
-
-	i = 0;
-	nb_char = 0;
-	nb_word = 0;
-	while (str[i])
-	{
-		if ((str[i] != c) && (str[i + 1] == c || str[i + 1] == '\0'))
-			nb_word++;
-		i++;
-		if ((str[i] != c) && (nb_word + 1 == index_word))
-			nb_char++;
-	}
-	if ((str[0] != c) && (index_word == 1))
-		return (nb_char + 1);
-	else
-		return (nb_char);
-}
-
-static int		ft_word_position(int index_word, char *str, char c)
-{
-	int	i;
-	int	nb_word;
-	int	word_position;
-
-	word_position = 0;
-	i = 0;
-	nb_word = 0;
-	if ((str[0] != c) && (index_word == 1))
+	if (!s)
 		return (0);
-	while (str[i])
-	{
-		if ((str[i] != c) && (str[i + 1] == c || str[i + 1] == '\0'))
-			nb_word++;
-		i++;
-		if ((str[i] != c) && (nb_word + 1 == index_word))
-			word_position = i;
-	}
-	return (word_position - (ft_nb_char(index_word, str, c) - 1));
+	while (*s && *s == c)
+		s++;
+	if (!(*s))
+		return (0);
+	while (*s && *s != c)
+		s++;
+	return (1 + nb_word(s, c));
 }
 
-char			**ft_strsplit(char const *s, char c)
+static int	nb_char(char *s, char c)
+{
+	int		nb;
+
+	nb = 0;
+	while (*s && *s == c)
+		s++;
+	while (*s && *s != c)
+	{
+		s++;
+		nb++;
+	}
+	return (nb);
+}
+
+char		**ft_strsplit(char const *s, char c)
 {
 	int		i;
-	int		j;
+	int		nb_w;
+	int		nb_c;
 	char	**tab;
 
-	if (!s || !(tab = malloc(sizeof(char *) * (ft_nb_word((char *)s, c) + 1))))
+	nb_w = nb_word((char *)s, c);
+	if (!s || !(tab = (char **)malloc(sizeof(char *) * (nb_w + 1))))
 		return (NULL);
 	i = 0;
-	j = 0;
-	while (i < ft_nb_word((char *)s, c))
+	tab[nb_w] = 0;
+	while (i < nb_w)
 	{
-		if (!(tab[i] = malloc(sizeof(char) *
-			(ft_nb_char((i + 1), (char *)s, c) + 1))))
-			return (NULL);
-		while (j < (ft_nb_char((i + 1), (char *)s, c)))
+		nb_c = nb_char((char *)s, c);
+		if (!(tab[i] = ft_strnew(nb_c)))
 		{
-			tab[i][j] = s[ft_word_position((i + 1), (char *)s, c) + j];
-			j++;
+			ft_tabfree(tab);
+			return (NULL);
 		}
-		tab[i][j] = '\0';
+		while (*s && *s == c)
+			s++;
+		ft_strncpy(tab[i], (char *)s, nb_c);
+		s += nb_c;
 		i++;
-		j = 0;
 	}
-	tab[i] = 0;
 	return (tab);
 }

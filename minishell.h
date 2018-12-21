@@ -6,7 +6,7 @@
 /*   By: fdikilu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/04 21:37:35 by fdikilu           #+#    #+#             */
-/*   Updated: 2018/12/19 23:00:17 by fdikilu          ###   ########.fr       */
+/*   Updated: 2018/12/21 14:25:28 by fdikilu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "libft/libft.h"
 
+char	*findvar(char *env, char *name);
 char	*ft_getvalue(char **env, char *name);
 char	**ft_reset_env(char **env, int resize);
 int		check_builtin(char *cmd);
